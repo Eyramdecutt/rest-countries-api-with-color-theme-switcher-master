@@ -10,7 +10,7 @@ const NavBar = () => {
         <h1 className="font-bold">Where in the world?</h1>
         <div className="flex items-center space-x-2">
           <HiOutlineMoon size="15" />
-          <p className="text-sm">Dark Mode</p>
+          <p className="text-sm font-semibold">Dark Mode</p>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
-import Countries from "./components/CountryGrid";
-import Data from "./components/Data";
+import CountryGrid from "./components/CountryGrid";
 import InputSearch from "./components/InputSearch";
 import NavBar from "./components/NavBar";
 import Region from "./components/Region";
@@ -12,8 +11,9 @@ function App() {
         <InputSearch />
         <Region />
       </div>
-      <Countries />
-      <Data />
+      <div>
+        <CountryGrid />
+      </div>
     </>
   );
 }
