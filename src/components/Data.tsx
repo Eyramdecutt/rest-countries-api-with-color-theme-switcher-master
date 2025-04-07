@@ -28,16 +28,7 @@ const Data = () => {
 
   console.log(data);
 
-  return (
-    <div>
-      {data?.map((country, index) => (
-        <div key={index}>
-          <img src={country.flags.png} alt="" className="h-20" />
-          <p>{country.name.common}</p>
-        </div>
-      ))}
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Data;

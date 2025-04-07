@@ -23,7 +23,7 @@ const CountryCard = ({ country }: Props) => {
             <span className="font-semibold">Region:</span> {country.region}
           </p>
           <p>
-            <span className="font-semibold">Capital:</span> {country.capital}
+            <span className="font-semibold">Capital:</span> {country.capital[0]}
           </p>
         </div>
       </div>

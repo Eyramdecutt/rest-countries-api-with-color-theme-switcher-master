@@ -6,18 +6,23 @@ export interface Country {
   name: { common: string };
   flags: { svg: string };
   population: number;
-  region: String;
-  capital: String;
+  region: string;
+  capital: string[];
 }
 
-const useCountries = () => {
+const useCountries = (selectedRegion: string | null) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
+
+    const endpoint = selectedRegion
+      ? `/v3.1/region/${selectedRegion}?fields=name,flags,population,capital,region`
+      : "/v3.1/all?fields=name,flags,population,capital,region";
+
     apiClient
-      .get<Country[]>("/v3.1/all?fields=name,flags,population,capital,region", {
+      .get<Country[]>(endpoint, {
         signal: controller.signal,
       })
       .then((res) => {
@@ -30,7 +35,7 @@ const useCountries = () => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [selectedRegion]);
 
   return { countries, error };
 };
