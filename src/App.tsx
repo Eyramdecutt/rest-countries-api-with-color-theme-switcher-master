@@ -6,18 +6,19 @@ import NavBar from "./components/NavBar";
 import RegionSelector from "./components/RegionSelector";
 
 function App() {
-  const [selectedRegion, setSelectedRegion] = useState<String | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [searchText, setSearchText] = useState<string | null>(null);
   return (
     <>
       <NavBar />
       <div className="px-4 md:px-8 xl:px-20 lg:flex lg:justify-between mt-9">
-        <InputSearch />
+        <InputSearch onSearch={(searchText) => setSearchText(searchText)} />
         <RegionSelector
           onSelectRegion={(region) => setSelectedRegion(region)}
         />
       </div>
       <div>
-        <CountryGrid selectedRegion={selectedRegion} />
+        <CountryGrid searchText={searchText} selectedRegion={selectedRegion} />
         <Data />
       </div>
     </>

@@ -10,16 +10,22 @@ export interface Country {
   capital: string[];
 }
 
-const useCountries = (selectedRegion: string | null) => {
+const useCountries = (
+  selectedRegion: string | null,
+  searchText: string | null
+) => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
 
-    const endpoint = selectedRegion
-      ? `/v3.1/region/${selectedRegion}?fields=name,flags,population,capital,region`
-      : "/v3.1/all?fields=name,flags,population,capital,region";
+    const endpoint =
+      searchText && !selectedRegion
+        ? `/v3.1/name/${searchText}?fields=name,flags,population,capital,region`
+        : selectedRegion
+        ? `/v3.1/region/${selectedRegion}?fields=name,flags,population,capital,region`
+        : "/v3.1/all?fields=name,flags,population,capital,region";
 
     apiClient
       .get<Country[]>(endpoint, {
@@ -35,7 +41,7 @@ const useCountries = (selectedRegion: string | null) => {
       });
 
     return () => controller.abort();
-  }, [selectedRegion]);
+  }, [selectedRegion, searchText]);
 
   return { countries, error };
 };

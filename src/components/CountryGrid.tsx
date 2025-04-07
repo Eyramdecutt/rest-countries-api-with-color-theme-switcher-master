@@ -2,11 +2,12 @@ import useCountries from "../hooks/useCountries";
 import CountryCard from "./CountryCard";
 
 interface Props {
-  selectedRegion: String | null;
+  selectedRegion: string | null;
+  searchText: string | null;
 }
 
-const CountryGrid = ({ selectedRegion }: Props) => {
-  const { countries, error } = useCountries(selectedRegion);
+const CountryGrid = ({ selectedRegion, searchText }: Props) => {
+  const { countries, error } = useCountries(selectedRegion, searchText);
   return (
     <div className="px-4 md:px-8 xl:px-20">
       {error && <p>{error}</p>}
