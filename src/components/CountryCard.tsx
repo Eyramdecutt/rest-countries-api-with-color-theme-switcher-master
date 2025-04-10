@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Country } from "../hooks/useCountries";
+import FormattedNumber from "./FormattedNumber";
 
 interface Props {
   country: Country;
@@ -13,17 +15,27 @@ const CountryCard = ({ country }: Props) => {
         className="object-cover w-full h-40"
       />
       <div className="p-4 mb-4">
-        <p className="font-bold text-[14px] pb-2">{country.name.common}</p>
-        <div className="text-[12px]">
+        <Link
+          to={"/country/" + country.name.common}
+          className="font-bold text-[14px] pb-2"
+        >
+          {country.name.common}
+        </Link>
+        <div className="text-[12px] mt-2 space-y-0.5">
           <p>
-            <span className="font-semibold">Poupulation:</span>{" "}
-            {country.population}
+            <span className="font-bold">Population: </span>
+            <FormattedNumber
+              value={country.population}
+              className="text-gray-700"
+            />
           </p>
           <p>
-            <span className="font-semibold">Region:</span> {country.region}
+            <span className="font-bold">Region:</span>{" "}
+            <span className="text-gray-700">{country.region}</span>
           </p>
           <p>
-            <span className="font-semibold">Capital:</span> {country.capital[0]}
+            <span className="font-bold">Capital:</span>{" "}
+            <span className="text-gray-700">{country.capital[0]}</span>
           </p>
         </div>
       </div>

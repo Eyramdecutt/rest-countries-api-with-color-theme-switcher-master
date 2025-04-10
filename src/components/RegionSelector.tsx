@@ -17,7 +17,7 @@ const RegionSelector = ({ onSelectRegion }: Props) => {
       <select
         name=""
         id=""
-        className="outline-none text-[14px] font-semibold"
+        className="outline-none text-[14px]"
         onChange={handleChange}
       >
         <option value="">Filter by Region</option>

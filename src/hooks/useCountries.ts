@@ -3,7 +3,7 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
 export interface Country {
-  name: { common: string };
+  name: { common: string; nativeName: { eng: { official: string } } };
   flags: { svg: string };
   population: number;
   region: string;
